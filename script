@@ -1,0 +1,46 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/lime"))()
+
+local w = Library:Window("Main")
+
+w:Toggle("Auto Attack", function(value)
+    getgenv().lol = value
+    while getgenv().lol do
+    local args = {
+                [1] = 6
+                    }
+        game:GetService("ReplicatedStorage").Remotes.Combat:FireServer(unpack(args))
+    wait()
+end
+end)
+
+local re = Library:Window("Other Stuff")
+
+    local gay = game:GetService("Players")
+re:Toggle("Bring Players", function(value)
+    getgenv().monke = value
+    while getgenv().monke do
+for i,v in pairs(gay:GetPlayers()) do 
+    if v ~= gay.LocalPlayer then 
+    v.Character.HumanoidRootPart.CFrame = gay.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-8)
+    v.Character.HumanoidRootPart.Size = Vector3.new(30,30,30)
+    v.Character.HumanoidRootPart.CanCollide = false
+    end
+end
+wait()
+end
+end)
+
+re:Toggle("AutoRebirth", function(value)
+    getgenv().rebirth = value
+    while getgenv().rebirth do
+    local args = {
+    [1] = game:GetService("Players").LocalPlayer.leaderstats["\240\159\140\128Rebirth"]
+        }
+        game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer(unpack(args))
+    wait(.3)
+end
+end)
+
+re:Button("Rejoin", function()
+game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+end)
